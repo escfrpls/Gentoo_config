@@ -1,0 +1,30 @@
+useradd -m -G users,wheel,audio,video -s /bin/bash username
+passwd username
+
+emerge --ask app-admin/doas
+echo "permit persist :wheel" > /etc/doas.conf
+
+emerge --ask --update --deep --newuse @world
+
+emerge --ask x11-base/xorg-server x11-apps/xinit
+
+emerge --ask i3-wm i3status xlock xterm
+
+emerge --ask lightdm lightdm-gtk-greeter
+--
+echo "[Desktop Entry]
+Name=i3
+Comment=Dynamic tiling window manager
+Exec=/usr/bin/i3
+Type=Application" > /usr/share/xsessions/i3.desktop
+--
+rc-update add lightdm default
+
+
+
+usermod -aG audio,video,wheel,portage,usb,input username
+
+emerge --ask alsa-utils
+rc-update add alsasound boot
+
+
