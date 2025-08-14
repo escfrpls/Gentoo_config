@@ -9,11 +9,11 @@ pacmd list-sources | grep name
 
 Step 2: Edit PulseAudio Configuration
 Open the PulseAudio configuration file:
-/etc/pulse/default.pa.d
+/etc/pulse/default.pa
 
 Add the following lines to configure the input and output devices:
 
-load-module module-remap-source master=alsa_input.usb-Focusrite_Scarlett_Solo_USB_Y7XVT031A2080F-00.Direct__Direct__source source_name=scarlett_mono master_channel_map=front-left channel_map=mono
+load-module module-remap-source master=alsa_input.usb-Focusrite_Scarlett_Solo_USB-00.analog-stereo source_name=scarlett_mono master_channel_map=left channel_map=mono
 set-default-source scarlett_mono
 
 set-default-sink alsa_output.usb-Focusrite_Scarlett_Solo_USB_Y7XVT031A2080F-00.Direct__Direct__sink
