@@ -1,3 +1,4 @@
+# Make these changes if the microphone is connected to the sound card via a cable.
 # Setting Up PulseAudio for Focusrite Scarlett Solo
 This guide will help you configure PulseAudio for use with the Focusrite Scarlett Solo device.
 
