@@ -1,0 +1,25 @@
+# Setting Up PulseAudio for Focusrite Scarlett Solo
+This guide will help you configure PulseAudio for use with the Focusrite Scarlett Solo device.
+
+## Step 1: Check Available Sources
+Open the terminal and run the following command to view the available sources:
+
+```bash
+pacmd list-sources | grep name
+
+Step 2: Edit PulseAudio Configuration
+Open the PulseAudio configuration file:
+/etc/pulse/default.pa.d
+
+Add the following lines to configure the input and output devices:
+
+load-module module-remap-source master=alsa_input.usb-Focusrite_Scarlett_Solo_USB_Y7XVT031A2080F-00.Direct__Direct__source source_name=scarlett_mono master_channel_map=front-left channel_map=mono
+set-default-source scarlett_mono
+
+set-default-sink alsa_output.usb-Focusrite_Scarlett_Solo_USB_Y7XVT031A2080F-00.Direct__Direct__sink
+load-module module-remap-sink sink_name=mono master=@DEFAULT_SINK@ channels=2 channel_map=mono,mono
+set-default-sink mono
+
+Step 3: Restart PulseAudio
+pulseaudio -k
+pulseaudio --start
